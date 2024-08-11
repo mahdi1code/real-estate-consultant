@@ -1,0 +1,220 @@
+{% load static %}
+<html lang="fa" dir="rtl"  >
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <title>Title</title>
+</head>
+<body style="background-image: url('{% static 'images/دریا.jpg' %}')">
+<div class="container">
+  <h2 style="text-align: center">لیست کابران ثبت شده</h2>
+  <div class="card" style="background:#454d55">
+    <div class="card-body">
+       <table class="table table-dark table-striped" style="direction: rtl">
+          <thead>
+            <tr>
+              <th>نام و نام خانوادگی</th>
+              <th>id</th>
+              <th>نام کاربری</th>
+              <th>اعمال</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for item in listuser %}
+            <tr>
+              <td>{{ item.last_name }}</td>
+              <td>{{ item.id }}</td>
+              <td>{{ item.username }}</td>
+              <td><a href="/EditUser/{{ item.id }}" class="btn btn-primary">ویرایش</a></td>
+                <td><button type="button" onclick="Delete('/DeleteUser/{{ item.id }}')" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeleteuser">حذف</button></td>
+            </tr>
+          {% endfor %}
+          </tbody>
+       </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="myModaldeleteuser">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header " style="">
+        <h4 class="modal-title">حذف کاربر</h4>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        آیا از حذف این کاربر اطمینان دارید؟
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <a  class="btn btn-danger" href="" id="deleteItem">حذف کن</a>
+        <button type="button" class="btn btn-info" data-dismiss="modal">خیر</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<hr>
+
+<div class="container mt-5">
+    <div style="text-align: center;"><h4>ثبت آگهی کلک</h4></div>
+    <div style="margin-top: 5%;">
+        <form>
+            <div class="form-group" style="direction:rtl;">
+                <label for="city" style="float: right;">شهر خود را انتخاب کنید:</label>
+                <select class="form-control" id="city" name="city">
+                    <option value="تهران">تهران</option>
+                    <option value="اصفهان">اصفهان</option>
+                    <option value="شیراز">شیراز</option>
+                    <option value="مشهد">مشهد</option>
+                    <option value="تبریز">تبریز</option>
+                    <option value="کرمان">کرمان</option>
+                    <option value="اهواز">اهواز</option>
+                    <option value="رشت">رشت</option>
+                    <option value="قزوین">قزوین</option>
+                    <option value="یزد">یزد</option>
+                </select>
+            </div>
+            
+        </form>
+    </div>
+
+<div style="margin-top: 10%;">
+    <div style="text-align: center;"><h4>نوع معامله و نوع ملک</h4></div>
+      <div class="form-group">
+          <div style="text-align: right;"><label >نوع معامله</label></div>
+        <div style="text-align: right;">
+          <label class="btn btn-gray-border deal_type sale">
+            <input type="radio" name="deal_type" autocomplete="off" value="sale" checked="" id="sale">
+            فروش
+          </label>
+          <label class="btn btn-gray-border deal_type rent active">
+            <input type="radio" name="deal_type" autocomplete="off" value="rent" id="MortgageAndRent">
+            رهن و اجاره
+          </label>
+          <label class="btn btn-gray-border deal_type mortgage">
+            <input type="radio" name="deal_type" autocomplete="off" value="mortgage" id="mortgage">
+            رهن کامل
+          </label>
+          <label class="btn btn-gray-border deal_type pre_sale">
+            <input type="radio" name="deal_type" autocomplete="off" value="pre_sale">
+            پیش فروش
+          </label>
+          <label class="btn btn-gray-border deal_type exchange">
+            <input type="radio" name="deal_type" autocomplete="off" value="exchange" id="exchange">
+            معاوضه
+          </label>
+        </div>   
+      </div>
+      <div>
+        <div style="text-align: right"><label for="">نوع ملک</label></div>
+        <div style="text-align: right">
+          <label class="btn btn-gray-border deal_type sale" id="Apparatus">
+            <input type="radio" name="deal_type" autocomplete="off" value="sale" checked="" >
+            آپارتمان
+          </label>
+          <label class="btn btn-gray-border deal_type rent active" id="Villa">
+            <input type="radio" name="deal_type" autocomplete="off" value="rent" >
+            ویلایی
+          </label>
+          <label class="btn btn-gray-border deal_type mortgage" id="commercial">
+            <input type="radio" name="deal_type" autocomplete="off" value="mortgage" >
+            تجاری
+          </label>
+          <label class="btn btn-gray-border deal_type pre_sale" id="office">
+            <input type="radio" name="deal_type" autocomplete="off" value="pre_sale" >
+            دقتر کار اداری
+          </label>
+        </div>
+      </div>
+</div>
+<div style="text-align: center; margin-top: 6%;">
+  <div><label for=""><h4>موقعیت ملک</h4></label></div>
+  <div>
+    <label>خیابان یا کوچه</label>
+    <input type="tel">
+    <label>پلاک یا واحد</label>
+    <input type="text">
+  </div>
+
+<div class="container">
+  <h2 style="text-align: center">لیست پیام های مشتریان</h2>
+  <div class="card" style="background:#454d55">
+    <div class="card-body">
+       <table class="table table-dark table-striped" style="direction: rtl">
+          <thead>
+            <tr>
+              <th>نام و نام خانوادگی</th>
+              <th>ایمیل</th>
+              <th>موضوع</th>
+              <th>پیام</th>
+              <th>id</th>
+              <th>اعمال</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in listcustomermessage %}
+            <tr>
+                <td>{{ item.FullName }}</td>
+                <td>{{ item.Email }}</td>
+                <td>{{ item.Issue }}</td>
+                <td>{{ item.message }}</td>
+                <td>{{ item.Id }}</td>
+                <td><a href="/Editcustomermessage/{{ item.Id }}" class="btn btn-primary">ویرایش</a></td>
+                <td><button type="button" onclick="Deletemessage('/Deletecustomermessage/{{ item.Id }}')" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModaldeletemessage">حذف</button></td>
+
+            </tr>
+            {% endfor %}
+          </tbody>
+       </table>
+    </div>
+  </div>
+</div>
+  
+</div>
+</div>
+<div class="modal" id="myModaldeletemessage">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header " style="">
+        <h4 class="modal-title">حذف پیام کاربر</h4>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        آیا از حذف این پیام اطمینان دارید؟
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <a  class="btn btn-danger" href="" id="deletemessage">حذف کن</a>
+        <button type="button" class="btn btn-info" data-dismiss="modal">خیر</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'assets/js/templates.js' %}"></script>
+<script src="{% static 'assets/css/style.css' %}"></script>
+</html>
