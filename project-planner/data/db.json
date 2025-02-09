@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "title": "Create New Home Banner",
+      "details": "Lorm ipsum",
+      "complete": false
+    },
+    {
+      "id": "2",
+      "title": "Make Marketing Email",
+      "details": "Lorem ipsum",
+      "complete": true
+    },
+    {
+      "id": "fbe2",
+      "title": "web developer",
+      "details": "Hello, I am a web developer",
+      "complete": false
+    },
+    {
+      "id": "124e",
+      "title": "Disainer",
+      "details": "Hello, I am a designer",
+      "complete": false
+    }
+  ]
+}
